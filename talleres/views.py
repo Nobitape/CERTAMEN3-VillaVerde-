@@ -14,33 +14,33 @@ def main(request):
 def talleres(request):
     return render(request, 'talleres/talleres.html')
 
-
-
-def register(request):
-    form = UserCreationForm()
-
+def registerView(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
-            user = form.save(commit=False)
-
-            tipo = request.POST.get('tipo_usuario')
-            if tipo == 'funcionario':
-                user.is_staff = True
-            user.save()
-
+            user = form.save()  
             login(request, user)
-            return redirect('main')
+            return redirect('/login') 
 
+    else:
+        form = UserCreationForm()
     return render(request, 'talleres/register.html', {'form': form})
 
-def login_view(request):
+def loginView(request):
     if request.method == 'POST':
-        form = AuthenticationForm(data=request.POST)
+        form = AuthenticationForm(request, data=request.POST)
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            return redirect('main')
+
+            if user.is_superuser or user.is_staff:
+                return redirect('/admin')
+
+            elif user.groups.filter(name='Junta de Vecinos').exists():
+                return redirect('/api/talleres')   
+
+            else:
+                return redirect('main')         
     else:
         form = AuthenticationForm()
     return render(request, 'talleres/login.html', {'form': form})
