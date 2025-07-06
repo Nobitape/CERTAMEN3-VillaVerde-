@@ -8,5 +8,4 @@ class TallerViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
     def perform_create(self, serializer):
-        # Deja el taller como pendiente automáticamente
         serializer.save(propuesto_por=self.request.user, estado='pendiente')

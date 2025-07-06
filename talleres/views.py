@@ -4,11 +4,9 @@ from django.forms import inlineformset_factory
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.models import User
-
 from .models import Taller
 from datetime import date
 
-# Create your views here.
 
 def main(request):
     return render(request, 'talleres/main.html')
@@ -31,8 +29,8 @@ def register(request):
                 user.is_staff = True
             user.save()
 
-            login(request, user)  # lo loguea automáticamente
-            return redirect('main')  # o donde quieras redirigir
+            login(request, user)
+            return redirect('main')
 
     return render(request, 'talleres/register.html', {'form': form})
 

@@ -14,3 +14,8 @@ class TallerAdmin(admin.ModelAdmin):
     list_display = ['titulo', 'fecha', 'estado', 'profesor', 'lugar', 'categoria']
     list_filter = ['estado', 'fecha', 'categoria']
     search_fields = ['titulo', 'observacion']
+
+admin.site.register(Categoria, CategoriaAdmin)
+admin.site.register(Lugar, LugarAdmin)
+admin.site.register(Profesor, ProfesorAdmin)
+admin.site.register(Taller, TallerAdmin)
