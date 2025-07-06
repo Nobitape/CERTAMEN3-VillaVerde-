@@ -30,7 +30,3 @@ def register(request):
 
 def login(request):
     return render(request, 'talleres/login.html')
-
-def inicio(request):
-    talleres = Taller.objects.filter(estado='aceptado', fecha__gt=date.today())
-    return render(request, 'talleres/inicio.html', {'talleres': talleres})
