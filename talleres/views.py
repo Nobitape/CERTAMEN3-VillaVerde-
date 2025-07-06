@@ -3,6 +3,8 @@ from django.http import HttpResponse
 from django.forms import inlineformset_factory
 from django.contrib.auth.forms import UserCreationForm
 
+from .models import Taller
+from datetime import date
 
 # Create your views here.
 
@@ -28,3 +30,7 @@ def register(request):
 
 def login(request):
     return render(request, 'talleres/login.html')
+
+def inicio(request):
+    talleres = Taller.objects.filter(estado='aceptado', fecha__gt=date.today())
+    return render(request, 'talleres/inicio.html', {'talleres': talleres})

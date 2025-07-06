@@ -1,0 +1,44 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# SQLite database
+*.sqlite3
+
+# Django secret key and environment variables
+.env
+*.env
+
+# Virtual environment
+env/
+venv/
+ENV/
+
+# VSCode settings
+.vscode/
+
+# macOS/Windows system files
+.DS_Store
+Thumbs.db
+
+# Logs and local run files
+*.log
+
+# Migrations compiled files
+*/migrations/__pycache__/
+*/migrations/*.pyc
+
+# Static files (if collected)
+staticfiles/
+
+# Coverage, testing and pycache
+.coverage
+htmlcov/
+coverage.xml
+*.cover
+
+# Python egg and build files
+*.egg-info/
+dist/
+build/
