@@ -22,8 +22,8 @@ from talleres import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.main, name='main'),
-    path('', include('talleres.urls')),
-    path('talleres', views.talleres, name='talleres'),
+    path('talleres/', include('talleres.urls')),
+    path('admin/', admin.site.urls),
     path('api/', include('api.urls')),        
     path('api-auth/', include('rest_framework.urls')),  
            

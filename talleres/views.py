@@ -4,15 +4,32 @@ from django.forms import inlineformset_factory
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.models import User
-from .models import Taller
+from .models import Taller, Categoria
 from datetime import date
+from django.utils import timezone
 
 
 def main(request):
     return render(request, 'talleres/main.html')
 
-def talleres(request):
-    return render(request, 'talleres/talleres.html')
+def listar_talleres(request):
+    categorias = Categoria.objects.all()
+    categoria_id = request.GET.get('categoria_id')
+
+    talleres = Taller.objects.filter(
+        estado='aceptado',
+        fecha__gte=timezone.now().date()
+    ).order_by('fecha')
+
+    if categoria_id:
+        talleres = talleres.filter(categoria_id=categoria_id)
+
+    context = {
+        'talleres': talleres,
+        'categorias': categorias,
+        'selected_categoria_id': int(categoria_id) if categoria_id else None
+    }
+    return render(request, 'talleres/talleres.html', context)
 
 def registerView(request):
     if request.method == 'POST':
