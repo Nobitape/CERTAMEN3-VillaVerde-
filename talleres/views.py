@@ -62,6 +62,6 @@ def loginView(request):
         form = AuthenticationForm()
     return render(request, 'talleres/login.html', {'form': form})
 
-def logout(request):
+def logoutView(request):
     logout(request)
-    return redirect('login')
+    return redirect('main')

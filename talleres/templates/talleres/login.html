@@ -5,16 +5,26 @@
 <head>
     <meta charset="UTF-8">
     <title>Iniciar Sesión</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <style>
+        body, html {
+            height: 100%;
+        }
+    </style>
 </head>
-<body>
-    <h1>Login</h1>
 
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Ingresar</button>
-    </form>
+<body class="bg-dark">
 
-    <p>¿No tienes cuenta? <a href="{% url 'register' %}">Regístrate</a></p>
-</body>
-</html>
+    {% include 'talleres/navbar.html' %}
+
+    <div class="d-flex justify-content-center align-items-center" style="min-height: 100vh; margin-top: 56px;">
+        <div class="card shadow p-4" style="width: 100%; max-width: 400px;">
+            <h3 class="text-center mb-3">Iniciar sesión</h3>
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary mt-2">Entrar</button>
+                </div>
+            </form>
+            <p class="text-center mt-3
