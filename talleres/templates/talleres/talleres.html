@@ -29,6 +29,8 @@
                         <h5 class="card-title">{{ taller.titulo }}</h5>
                         <p class="card-text"><strong>Fecha:</strong> {{ taller.fecha|date:"d/m/Y" }}</p>
                         <p class="card-text"><strong>Duración:</strong> {{ taller.duracion_horas }} horas</p>
+                         <p class="card-text"><strong>Profesor/a:</strong> {{ taller.profesor.nombre_completo }}</p>
+    
                         <p class="card-text"><strong>Lugar:</strong> {{ taller.lugar.nombre }}</p>
                         <div class="mt-auto">
                            <span class="badge bg-primary">{{ taller.categoria.nombre }}</span>
